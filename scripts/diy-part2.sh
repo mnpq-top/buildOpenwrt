@@ -4,6 +4,7 @@ cat <<EOF >> .config
 
 CONFIG_SDK=y
 CONFIG_PACKAGE_nano=y
+CONFIG_PACKAGE_kmod-tls=y
 
 CONFIG_PACKAGE_kmod-sched-cake=y
 CONFIG_PACKAGE_kmod-tun=y
