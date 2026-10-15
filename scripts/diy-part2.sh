@@ -13,7 +13,6 @@ CONFIG_PACKAGE_kmod-nf-flow=y
 CONFIG_PACKAGE_kmod-nft-bridge=y
 CONFIG_PACKAGE_kmod-nft-tproxy=y
 CONFIG_PACKAGE_kmod-nft-offload=y
-CONFIG_PACKAGE_kmod-nf-conntrack-bridge=y
 
 CONFIG_PACKAGE_kmod-wireguard=y
 CONFIG_PACKAGE_luci-proto-wireguard=y
