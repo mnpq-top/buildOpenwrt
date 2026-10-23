@@ -6,11 +6,9 @@ CONFIG_SDK=y
 CONFIG_PACKAGE_nano=y
 CONFIG_PACKAGE_kmod-tls=y
 
-#CONFIG_PACKAGE_kmod-sched-cake=y
 CONFIG_PACKAGE_kmod-tun=y
 CONFIG_PACKAGE_kmod-tcp-bbr=y
 CONFIG_PACKAGE_kmod-nf-flow=y
-CONFIG_PACKAGE_kmod-nft-bridge=y
 CONFIG_PACKAGE_kmod-nft-tproxy=y
 CONFIG_PACKAGE_kmod-nft-offload=y
 
