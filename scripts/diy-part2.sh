@@ -6,7 +6,6 @@ CONFIG_SDK=y
 CONFIG_PACKAGE_nano=y
 CONFIG_PACKAGE_kmod-tls=y
 
-CONFIG_PACKAGE_kmod-wireguard=y
 CONFIG_PACKAGE_luci-proto-wireguard=y
 
 CONFIG_PACKAGE_luci-app-airoha-npu=y
