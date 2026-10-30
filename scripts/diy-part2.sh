@@ -12,5 +12,6 @@ CONFIG_PACKAGE_luci-proto-wireguard=y
 
 CONFIG_PACKAGE_luci-app-airoha-npu=y
 
-CONFIG_PACKAGE_luci-theme-argon=n
 EOF
+
+sed -i 's/CONFIG_PACKAGE_luci-theme-argon=y//' .config
