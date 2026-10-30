@@ -3,7 +3,6 @@
 
 cat <<EOF >>feeds.conf.default
 
-#src-git mypackages https://github.com/yahuisme/packages.git;main
 
 EOF
 
