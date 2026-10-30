@@ -5,7 +5,7 @@ cat <<EOF >> .config
 #CONFIG_SDK=y
 CONFIG_PACKAGE_nano=y
 CONFIG_PACKAGE_kmod-tls=y
-CONFIG_PACKAGE_luci-i18n-base-zh-cn=y
+CONFIG_LUCI_LANG_zh_Hans=y
 
 #CONFIG_PACKAGE_qosify=y
 
