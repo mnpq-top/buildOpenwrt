@@ -65,6 +65,7 @@ jobs:
         run: |
           cd openwrt
           make defconfig
+          cat .config
           echo "$(grep CONFIG_TARGET_ARCH_PACKAGES= .config)" >> $GITHUB_ENV
 
       - uses: klever1988/cachewrtbuild@main
