@@ -25,7 +25,7 @@ CONFIG_PACKAGE_kmod-dummy=y
 
 EOF
 
-sed -i 's/ +mihomo//' feeds/luci/nikki/Makefile
-sed -i 's/ +yq//' feeds/luci/nikki/Makefile
+sed -i 's/+mihomo/=mihomo/' feeds/luci/nikki/Makefile
+sed -i 's/+yq/=yq/' feeds/luci/nikki/Makefile
 
 sed -i 's/CONFIG_PACKAGE_luci-theme-argon=y//' .config
