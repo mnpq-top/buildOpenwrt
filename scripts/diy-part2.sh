@@ -15,6 +15,7 @@ CONFIG_PACKAGE_luci-app-https-dns-proxy=y
 
 CONFIG_PACKAGE_luci-app-airoha-npu=y
 CONFIG_PACKAGE_luci-app-rtp2httpd=y
+CONFIG_PACKAGE_nginx-full=y
 
 
 EOF
