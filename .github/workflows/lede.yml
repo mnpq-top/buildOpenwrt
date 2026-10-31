@@ -1,4 +1,4 @@
-name: Build ponWrt
+name: Build ponWrt lede
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
       repo_url:
         required: true
         description: '源代码仓库URL'
-        default: 'https://github.com/pbs05/ponwrt'
+        default: 'https://github.com/coolsnowwolf/lede'
       repo_branch:
         required: true
         description: '源代码仓库分支'
@@ -14,7 +14,7 @@ on:
       config_file:
         required: true
         description: '.config file'
-        default: 'openwrt/configs/an7581.config'
+        default: 'lede.an7581.config'
 jobs:
   build:
     runs-on: ubuntu-24.04
