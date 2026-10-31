@@ -6,6 +6,7 @@ cat <<EOF >> .config
 CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_nano=y
 CONFIG_PACKAGE_kmod-tls=y
+CONFIG_PACKAGE_kmod-dummy=y
 CONFIG_LUCI_LANG_zh_Hans=y
 
 #CONFIG_PACKAGE_qosify=y
