@@ -3,6 +3,7 @@
 cat <<EOF >> .config
 
 #CONFIG_SDK=y
+CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_nano=y
 CONFIG_PACKAGE_kmod-tls=y
 CONFIG_LUCI_LANG_zh_Hans=y
