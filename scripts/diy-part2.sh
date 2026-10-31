@@ -18,14 +18,14 @@ CONFIG_PACKAGE_luci-app-airoha-npu=y
 
 CONFIG_PACKAGE_luci-app-rtp2httpd=y
 
-#CONFIG_PACKAGE_luci-app-nikki=y
+CONFIG_PACKAGE_luci-app-nikki=y
 # CONFIG_PACKAGE_mihomo-meta is not set
 CONFIG_PACKAGE_kmod-dummy=y
 # CONFIG_PACKAGE_yq is not set
 
 EOF
 
-#sed -i 's/+mihomo/=mihomo/' feeds/nikki/Makefile
-#sed -i 's/+yq/=yq/' feeds/nikki/Makefile
+#sed -i 's/+mihomo//' feeds/nikki/Makefile
+#sed -i 's/+yq//' feeds/nikki/Makefile
 
 sed -i 's/CONFIG_PACKAGE_luci-theme-argon=y//' .config
