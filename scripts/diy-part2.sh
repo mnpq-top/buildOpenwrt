@@ -18,10 +18,13 @@ CONFIG_PACKAGE_luci-app-airoha-npu=y
 
 CONFIG_PACKAGE_luci-app-rtp2httpd=y
 
-#CONFIG_PACKAGE_luci-app-nikki=y
+CONFIG_PACKAGE_luci-app-nikki=y
 #CONFIG_PACKAGE_mihomo-meta=y
 CONFIG_PACKAGE_kmod-dummy=y
 
 EOF
+
+sed -i 's/ +mihomo//' feeds/luci/nikki/Makefile
+sed -i 's/ +yq//' feeds/luci/nikki/Makefile
 
 sed -i 's/CONFIG_PACKAGE_luci-theme-argon=y//' .config
