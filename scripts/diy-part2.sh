@@ -16,9 +16,11 @@ CONFIG_PACKAGE_luci-proto-wireguard=y
 CONFIG_PACKAGE_luci-app-https-dns-proxy=y
 
 CONFIG_PACKAGE_luci-app-airoha-npu=y
-CONFIG_PACKAGE_luci-app-rtp2httpd=y
-CONFIG_PACKAGE_luci-app-nikki=y
 
+CONFIG_PACKAGE_luci-app-rtp2httpd=y
+
+CONFIG_PACKAGE_luci-app-nikki=y
+CONFIG_PACKAGE_mihomo-meta=y
 
 EOF
 
