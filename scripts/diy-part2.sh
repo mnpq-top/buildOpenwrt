@@ -19,9 +19,9 @@ CONFIG_PACKAGE_luci-app-airoha-npu=y
 CONFIG_PACKAGE_luci-app-rtp2httpd=y
 
 CONFIG_PACKAGE_luci-app-nikki=y
-#CONFIG_PACKAGE_mihomo-meta=y
+# CONFIG_PACKAGE_mihomo-meta is not set
 CONFIG_PACKAGE_kmod-dummy=y
-#CONFIG_PACKAGE_yq=y
+# CONFIG_PACKAGE_yq is not set
 
 EOF
 
