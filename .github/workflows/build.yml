@@ -60,7 +60,12 @@ jobs:
           ./scripts/feeds update -a
           ./scripts/feeds install -a
           ../scripts/diy-part2.sh
-          
+
+      - name: Tree
+        run: |
+          cd openwrt
+          tree -L 5
+
       - name: Config
         run: |
           cd openwrt
