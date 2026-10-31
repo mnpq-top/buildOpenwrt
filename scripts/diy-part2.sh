@@ -11,6 +11,8 @@ CONFIG_LUCI_LANG_zh_Hans=y
 
 CONFIG_PACKAGE_luci-proto-wireguard=y
 
+CONFIG_PACKAGE_luci-app-https-dns-proxy=y
+
 CONFIG_PACKAGE_luci-app-airoha-npu=y
 CONFIG_PACKAGE_luci-app-rtp2httpd=y
 
