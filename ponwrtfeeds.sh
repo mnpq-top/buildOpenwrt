@@ -1,5 +1,12 @@
 #!/bin/bash
 
+./scripts/feeds update -a
+
+sed -i 's/+mihomo//' feeds/nikki/Makefile
+sed -i 's/+yq//' feeds/nikki/Makefile
+
+./scripts/feeds install -a
+
 cat <<EOF >> .config
 
 #CONFIG_SDK=y
@@ -22,8 +29,5 @@ CONFIG_PACKAGE_luci-app-nikki=y
 CONFIG_PACKAGE_kmod-dummy=y
 
 EOF
-
-sed -i 's/+mihomo//' feeds/nikki/Makefile
-sed -i 's/+yq//' feeds/nikki/Makefile
 
 sed -i 's/CONFIG_PACKAGE_luci-theme-argon=y//' .config
