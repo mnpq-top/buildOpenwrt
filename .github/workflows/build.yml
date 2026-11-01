@@ -61,7 +61,7 @@ jobs:
       - name: Tree
         run: |
           cd openwrt
-          tree -L 5
+          tree -L 6
 
       - name: Config
         run: |
