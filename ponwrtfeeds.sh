@@ -38,4 +38,5 @@ CONFIG_PACKAGE_kmod-dummy=y
 
 EOF
 
+sed -i 's/CONFIG_PACKAGE_airoha-pon-debug=y//' .config
 sed -i 's/CONFIG_PACKAGE_luci-theme-argon=y//' .config
