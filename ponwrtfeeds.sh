@@ -33,6 +33,12 @@ CONFIG_PACKAGE_luci-app-rtp2httpd=y
 CONFIG_PACKAGE_luci-app-nikki=y
 CONFIG_PACKAGE_kmod-dummy=y
 
+
+CONFIG_PACKAGE_kmod-airoha-xpon=y
+CONFIG_PACKAGE_kmod-airoha-pon-frontend=y
+CONFIG_PACKAGE_airoha-pond=y
+CONFIG_PACKAGE_airoha-ponctl=y
+CONFIG_PACKAGE_luci-app-pon=y
 EOF
 
 sed -i 's/+mihomo//' feeds/nikki/nikki/Makefile
