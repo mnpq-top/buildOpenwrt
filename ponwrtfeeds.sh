@@ -33,6 +33,11 @@ CONFIG_PACKAGE_luci-app-rtp2httpd=y
 CONFIG_PACKAGE_luci-app-nikki=y
 CONFIG_PACKAGE_kmod-dummy=y
 
+#CONFIG_PACKAGE_luci-app-honk=y
+#CONFIG_PACKAGE_kmod-sched-core=y
+#CONFIG_PACKAGE_kmod-sched-bpf=y
+#CONFIG_PACKAGE_kmod-veth=y
+#CONFIG_PACKAGE_kmod-nft-queue=y
 
 CONFIG_PACKAGE_kmod-airoha-xpon=y
 CONFIG_PACKAGE_kmod-airoha-pon-frontend=y
