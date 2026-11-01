@@ -34,8 +34,6 @@ CONFIG_PACKAGE_luci-app-nikki=y
 CONFIG_PACKAGE_kmod-dummy=y
 
 # CONFIG_MODULE_DEFAULT_i2c-tools is not set
-# CONFIG_PACKAGE_libi2c is not set
-# CONFIG_PACKAGE_i2c-tools is not set
 
 EOF
 
