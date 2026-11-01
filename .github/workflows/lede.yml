@@ -3,6 +3,11 @@ name: Build ponWrt lede
 on:
   workflow_dispatch:
     inputs:
+      debug_enabled:
+        type: boolean
+        description: 'ssh debug'
+        required: true
+        default: false
       repo_url:
         required: true
         description: '源代码仓库URL'
@@ -49,12 +54,16 @@ jobs:
           ${{ github.event.inputs.repo_branch }}
           ${{ github.event.inputs.config_file }}
           EOF
+          cp ${{ github.event.inputs.config_file }} openwrt/.config
           cd openwrt
           git log -n 1 --oneline >> release.body || true
 
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
+
       - name: Feeds
         run: |
-          cp ${{ github.event.inputs.config_file }} openwrt/.config
           cd openwrt
           ../scripts/diy-part1.sh
           ./scripts/feeds update -a
