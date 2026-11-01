@@ -33,8 +33,6 @@ CONFIG_PACKAGE_luci-app-rtp2httpd=y
 CONFIG_PACKAGE_luci-app-nikki=y
 CONFIG_PACKAGE_kmod-dummy=y
 
-# CONFIG_MODULE_DEFAULT_i2c-tools is not set
-
 EOF
 
 sed -i 's/+mihomo//' feeds/nikki/nikki/Makefile
