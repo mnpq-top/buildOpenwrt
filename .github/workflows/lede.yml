@@ -46,7 +46,6 @@ jobs:
       - name: Git
         run: |
           sudo mkdir -p /workdir && sudo chown $USER:$USER /workdir
-          chmod +x scripts/diy-part1.sh scripts/diy-part2.sh
           git clone ${{ github.event.inputs.repo_url }} -b ${{ github.event.inputs.repo_branch }} openwrt
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
           cat <<EOF >openwrt/release.body
@@ -54,27 +53,20 @@ jobs:
           ${{ github.event.inputs.repo_branch }}
           ${{ github.event.inputs.config_file }}
           EOF
-          cp ${{ github.event.inputs.config_file }} openwrt/.config
           cd openwrt
           git log -n 1 --oneline >> release.body || true
 
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
-        timeout-minutes: 15
-
       - name: Feeds
         run: |
+          cp ${{ github.event.inputs.config_file }} openwrt/.config
+          chmod +x ledewrt.sh
           cd openwrt
-          ../scripts/diy-part1.sh
-          ./scripts/feeds update -a
-          ./scripts/feeds install -a
-          ../scripts/diy-part2.sh
+          ../ledewrt.sh
 
       - name: Tree
         run: |
           cd openwrt
-          tree -L 5
+          tree -L 6
 
       - name: Config
         run: |
@@ -86,7 +78,7 @@ jobs:
       - uses: klever1988/cachewrtbuild@main
         with:
           ccache: true
-          mixkey: lede-${{ env.CONFIG_TARGET_ARCH_PACKAGES }}
+          mixkey: ${{ env.CONFIG_TARGET_ARCH_PACKAGES }}
           prefix: 'openwrt'
 
       - name: Download
