@@ -30,28 +30,32 @@ CONFIG_PACKAGE_luci-app-airoha-npu=y
 
 CONFIG_PACKAGE_luci-app-rtp2httpd=y
 
+EOF
+
+cat <<EOF >> .configg
+#CONFIG_PACKAGE_luci-app-honk=y
+CONFIG_PACKAGE_kmod-sched-core=y
+CONFIG_PACKAGE_kmod-sched-bpf=y
+CONFIG_PACKAGE_kmod-veth=y
+CONFIG_PACKAGE_kmod-nft-queue=y
+EOF
+
+cat <<EOF >> .config
 CONFIG_PACKAGE_luci-app-nikki=y
 CONFIG_PACKAGE_kmod-dummy=y
+EOF
+sed -i 's/+mihomo//' feeds/nikki/nikki/Makefile
+sed -i 's/+yq//' feeds/nikki/nikki/Makefile
 
-#CONFIG_PACKAGE_luci-app-honk=y
-#CONFIG_PACKAGE_kmod-sched-core=y
-#CONFIG_PACKAGE_kmod-sched-bpf=y
-#CONFIG_PACKAGE_kmod-veth=y
-#CONFIG_PACKAGE_kmod-nft-queue=y
-
+cat <<EOF >> .config
 CONFIG_PACKAGE_kmod-airoha-xpon=y
 CONFIG_PACKAGE_kmod-airoha-pon-frontend=y
 CONFIG_PACKAGE_airoha-pond=y
 CONFIG_PACKAGE_airoha-ponctl=y
 CONFIG_PACKAGE_luci-app-pon=y
 EOF
-
-sed -i 's/+mihomo//' feeds/nikki/nikki/Makefile
-sed -i 's/+yq//' feeds/nikki/nikki/Makefile
-
 sed -i 's/CONFIG_PACKAGE_airoha-pon-debug=y//' .config
 sed -i 's/CONFIG_PACKAGE_luci-theme-argon=y//' .config
-
 
 #
 
