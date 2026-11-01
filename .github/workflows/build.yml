@@ -41,7 +41,6 @@ jobs:
       - name: Git
         run: |
           sudo mkdir -p /workdir && sudo chown $USER:$USER /workdir
-          chmod +x scripts/diy-part1.sh scripts/diy-part2.sh
           git clone ${{ github.event.inputs.repo_url }} -b ${{ github.event.inputs.repo_branch }} openwrt
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
           cat <<EOF >openwrt/release.body
@@ -55,6 +54,7 @@ jobs:
       - name: Feeds
         run: |
           cp ${{ github.event.inputs.config_file }} openwrt/.config
+          chmod +x ponwrtfeeds.sh
           cd openwrt
           ../ponwrtfeeds.sh
 
