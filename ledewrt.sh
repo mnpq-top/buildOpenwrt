@@ -30,7 +30,7 @@ CONFIG_PACKAGE_luci-app-airoha-npu=y
 
 CONFIG_PACKAGE_luci-app-rtp2httpd=y
 
-CONFIG_PACKAGE_luci-app-nikki=y
+#CONFIG_PACKAGE_luci-app-nikki=y
 CONFIG_PACKAGE_kmod-dummy=y
 
 EOF
