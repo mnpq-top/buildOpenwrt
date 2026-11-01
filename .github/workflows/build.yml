@@ -56,10 +56,7 @@ jobs:
         run: |
           cp ${{ github.event.inputs.config_file }} openwrt/.config
           cd openwrt
-          ../scripts/diy-part1.sh
-          ./scripts/feeds update -a
-          ./scripts/feeds install -a
-          ../scripts/diy-part2.sh
+          ../ponwrtfeeds.sh
 
       - name: Tree
         run: |
