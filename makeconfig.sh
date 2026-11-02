@@ -1,0 +1,6 @@
+
+CONFIG_TARGET_airoha=y
+CONFIG_TARGET_airoha_an7581=y
+CONFIG_TARGET_airoha_an7581_DEVICE_fiberhome_hg5382a=y
+
+
