@@ -34,7 +34,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-        
+
       - name: Apt-get
         run: |
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /usr/local/share/powershell /usr/share/swift /usr/local/.ghcup /opt/hostedtoolcache/CodeQL
@@ -49,11 +49,11 @@ jobs:
 
       - name: Git
         run: |
-          git clone ${{ github.event.inputs.repo_url }} -b ${{ github.event.inputs.repo_branch }} openwrt
-          ownerrepo=${{ github.event.inputs.repo_url }}
+          git clone ${{ inputs.repo_url }} -b ${{ inputs.repo_branch }} openwrt
+          ownerrepo=${{ inputs.repo_url }}
           echo "ownerrepo=${ownerrepo#*//}" >> $GITHUB_ENV
           cat <<EOF >openwrt/release.body
-          ${ownerrepo}-${{ github.event.inputs.repo_branch }}
+          ${ownerrepo}-${{ inputs.repo_branch }}
           EOF
           cd openwrt && git log -n 1 --oneline >> release.body
       - name: Add feeds & packages
@@ -64,24 +64,24 @@ jobs:
         run: |
           cd openwrt && source ../lede.sh
           cat <<EOF >.config
-          CONFIG_TARGET_${{ github.event.inputs.cpu_brand }}=y
-          CONFIG_TARGET_${{ github.event.inputs.cpu_model }}=y
-          CONFIG_TARGET_${{ github.event.inputs.cpu_model }}_DEVICE_${{ github.event.inputs.device_model }}=y
+          CONFIG_TARGET_${{ inputs.cpu_brand }}=y
+          CONFIG_TARGET_${{ inputs.cpu_model }}=y
+          CONFIG_TARGET_${{ inputs.cpu_model }}_DEVICE_${{ inputs.device_model }}=y
           EOF
           makeconf
 
       - name: Setup upterm session
-        if: ${{ github.event.inputs.debug_enabled == true }}
+        if: ${{ inputs.debug_enabled == true }}
         uses: owenthereal/action-upterm@v2
         with:
           wait-timeout-minutes: 5
           limit-access-to-actor: true # Restrict to the user who triggered the workflow
       - uses: actions/upload-artifact@v4
-        if: ${{ github.event.inputs.debug_enabled == true}}
+        if: ${{ inputs.debug_enabled == true}}
         with:
           name: artifact
           path: $GITHUB_WORKSPACE/debug
-      - if: ${{ github.event.inputs.debug_enabled == true }}
+      - if: ${{ inputs.debug_enabled == true }}
         run: exit 1
       - name: Config
         run: |
@@ -92,7 +92,7 @@ jobs:
       - uses: klever1988/cachewrtbuild@main
         with:
           ccache: true
-          mixkey: ${{ env.ownerrepo }}-${{ github.event.inputs.cpu_model }}
+          mixkey: ${{ env.ownerrepo }}-${{ inputs.cpu_model }}
           prefix: openwrt
 
       - name: Download
@@ -104,7 +104,7 @@ jobs:
         run: |
           cd openwrt
           make -j$(nproc) || make -j1 V=s
-          
+
       - name: tar
         run: |
           cd openwrt/bin && tree -L 5
@@ -118,7 +118,7 @@ jobs:
       - name: Create Release and Upload Assets
         uses: softprops/action-gh-release@v3
         with:
-          name: "${{ github.event.inputs.device_model }}-${{ github.run_number }}"
-          tag_name: "${{ github.event.inputs.device_model }}-${{ github.run_number }}"
+          name: "${{ inputs.device_model }}-${{ github.run_number }}"
+          tag_name: "${{ inputs.device_model }}-${{ github.run_number }}"
           body_path: "openwrt/release.body"
           files: $GITHUB_WORKSPACE/openwrt/Release
