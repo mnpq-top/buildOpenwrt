@@ -1,4 +1,4 @@
-name: Build lede openwrt
+name: Build lede
 
 on:
   workflow_dispatch:
