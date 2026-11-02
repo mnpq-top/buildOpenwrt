@@ -1,4 +1,4 @@
-name: Build ponWrt lede
+name: Build lede openwrt
 
 on:
   workflow_dispatch:
@@ -18,16 +18,16 @@ on:
         default: 'master'
       cpu_brand:
         required: true
-        description: 'cpu品牌'
-        default: ''
+        description: 'cpu品牌 CONFIG_TARGET_airoha=y'
+        default: 'airoha'
       cpu_model:
         required: true
-        description: 'cpu型号'
-        default: ''
+        description: 'cpu型号CONFIG_TARGET_airoha_an7581=y'
+        default: 'airoha_an7581'
       device_model:
         required: true
-        description: 'device_model'
-        default: ''
+        description: '设备型号CONFIG_TARGET_airoha_an7581_DEVICE_fiberhome_hg5382a'
+        default: 'fiberhome_hg5382a'
 jobs:
   build:
     runs-on: ubuntu-24.04
