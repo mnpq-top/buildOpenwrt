@@ -54,17 +54,19 @@ jobs:
           ${{ github.event.inputs.repo_url }}
           ${{ github.event.inputs.repo_branch }}
           EOF
-
-      - name: Feeds
+      - name: Add feeds & packages
+        run: cd openwrt && source ../lede.sh && addfeeds
+      - name: Feeds update & install
+        run: cd openwrt && ./scripts/feeds update -a && ./scripts/feeds install -a
+      - name: Make .config
         run: |
+          cd openwrt && source ../lede.sh
           cat <<EOF >openwrt/.config
           CONFIG_TARGET_${{ github.event.inputs.cpu_brand }}=y
           CONFIG_TARGET_${{ github.event.inputs.cpu_model }}=y
           CONFIG_TARGET_${{ github.event.inputs.cpu_model }}_DEVICE_${{ github.event.inputs.device_model }}=y
           EOF
-          chmod +x lede.sh
-          cd openwrt
-          ../lede.sh
+          makeconf
 
       - name: Setup upterm session
         if: ${{ github.event.inputs.debug_enabled }}
