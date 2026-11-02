@@ -53,7 +53,7 @@ jobs:
           ownerrepo=${{ inputs.repo_url }}
           echo "ownerrepo=${ownerrepo#*//}" >> $GITHUB_ENV
           cat <<EOF >openwrt/release.body
-          ${ownerrepo}-${{ inputs.repo_branch }}
+          ${ownerrepo} ${{ inputs.repo_branch }}
           EOF
           cd openwrt && git log -n 1 --oneline >> release.body
       - name: Add feeds & packages
