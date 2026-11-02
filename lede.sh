@@ -18,9 +18,10 @@ EOF
 ################################
 
 delpkg() {
-for i in luci-app-ddns luci-app-vlmcsd luci-app-ssr-plus luci-theme-argon luci-app-filetransfer luci-app-upnp luci-app-nlbwmon luci-app-vsftpd airoha-pon-debug
+for i in coremark luci-app-ddns ddns-scripts_aliyun ddns-scripts_dnspod luci-app-upnp luci-app-autoreboot luci-app-filetransfer luci-app-vsftpd luci-app-ssr-plus luci-app-vlmcsd luci-app-accesscontrol luci-app-nlbwmon luci-theme-argon airoha-pon-debug
 do
   sed -i "s/CONFIG_PACKAGE_$i=y/CONFIG_PACKAGE_$i=n/g" .config
+  sed -i "s/$i//" include/target.mk
 done
 }
 
