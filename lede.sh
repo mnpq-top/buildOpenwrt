@@ -1,4 +1,7 @@
 #!/bin/bash
+
+################################
+diy() {
 cat <<EOF >>feeds.conf.default
 
 src-git rtp2httpd https://github.com/stackia/rtp2httpd.git;main
@@ -7,11 +10,14 @@ src-git rtp2httpd https://github.com/stackia/rtp2httpd.git;main
 EOF
 
 #git clone https://github.com/luanmuc/luci-app-airoha-npu.git package/luci-app-airoha-npu
+}
 
 ################################
-./scripts/feeds update -a
-./scripts/feeds install -a
+# ./scripts/feeds update -a
+# ./scripts/feeds install -a
 ################################
+
+diyy() {
 make defconfig
 cat <<EOF >> .config
 
@@ -57,5 +63,5 @@ CONFIG_PACKAGE_luci-app-pon=y
 EOF
 sed -i 's/CONFIG_PACKAGE_airoha-pon-debug=y//' .config
 sed -i 's/CONFIG_PACKAGE_luci-theme-argon=y//' .config
-
-#
+}
+################################
