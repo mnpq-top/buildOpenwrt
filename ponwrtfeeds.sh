@@ -1,7 +1,7 @@
 #!/bin/bash
 cat <<EOF >>feeds.conf.default
 
-src-git rtp2httpd https://github.com/stackia/rtp2httpd.git;main
+#src-git rtp2httpd https://github.com/stackia/rtp2httpd.git;main
 src-git nikki https://github.com/nikkinikki-org/OpenWrt-nikki.git;main
 
 EOF
@@ -51,13 +51,10 @@ EOF
 sed -i 's/+mihomo//' feeds/nikki/nikki/Makefile
 sed -i 's/+yq//' feeds/nikki/nikki/Makefile
 
-cat <<EOF >> .config
-CONFIG_PACKAGE_kmod-airoha-xpon=y
-CONFIG_PACKAGE_kmod-airoha-pon-frontend=y
-CONFIG_PACKAGE_airoha-pond=y
-CONFIG_PACKAGE_airoha-ponctl=y
-CONFIG_PACKAGE_luci-app-pon=y
-EOF
+for i in kmod-airoha-xpon kmod-airoha-pon-frontend airoha-pond airoha-ponctl luci-app-pon
+do
+  echo "CONFIG_PACKAGE_$i=y" >> .config
+done
 sed -i 's/CONFIG_PACKAGE_airoha-pon-debug=y//' .config
 sed -i 's/CONFIG_PACKAGE_luci-theme-argon=y//' .config
 
