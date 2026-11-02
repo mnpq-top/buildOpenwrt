@@ -16,17 +16,13 @@ on:
         required: true
         description: '源代码仓库分支'
         default: 'master'
-      cpu_brand:
-        required: true
-        description: 'cpu品牌'
-        default: 'airoha'
       cpu_model:
         required: true
-        description: 'cpu型号'
+        description: 'cpu品类_型号'
         default: 'airoha_an7581'
       device_model:
         required: true
-        description: '设备型号'
+        description: '设备型号(填all则全型号)'
         default: 'fiberhome_hg5382a'
 jobs:
   build:
@@ -63,8 +59,10 @@ jobs:
       - name: Make .config
         run: |
           cd openwrt && source ../lede.sh
+          cpu_brand=${{ inputs.cpu_model }}
+          cpu_brand=${cpu_brand%_*}
           cat <<EOF >.config
-          CONFIG_TARGET_${{ inputs.cpu_brand }}=y
+          CONFIG_TARGET_${cpu_brand}=y
           CONFIG_TARGET_${{ inputs.cpu_model }}=y
           EOF
           if [ "${{ inputs.device_model }}" == 'all' ]
@@ -130,7 +128,7 @@ jobs:
       - name: Create Release and Upload Assets
         uses: softprops/action-gh-release@v3
         with:
-          name: "${{ inputs.device_model }}-${{ github.run_number }}"
-          tag_name: "${{ inputs.device_model }}-${{ github.run_number }}"
+          name: "${{ inputs.cpu_model }}-${{ inputs.device_model }}-${{ github.run_number }}"
+          tag_name: "${{ inputs.cpu_model }}-${{ inputs.device_model }}-${{ github.run_number }}"
           body_path: "openwrt/release.body"
           files: ${{ github.workspace }}/openwrt/Release
