@@ -77,6 +77,7 @@ jobs:
             CONFIG_TARGET_${{ inputs.cpu_model }}_DEVICE_${{ inputs.device_model }}=y
             EOF
           fi
+          cat .config
           make defconfig
           makeconf
 
