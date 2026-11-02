@@ -100,6 +100,7 @@ jobs:
         run: |
           tree openwrt/bin/ #>> openwrt/release.body
           cd openwrt/bin/targets/*/*
+          cp /workdir/openwrt/.config cp.config
           echo "FIRMWAREDIR=$PWD" >> $GITHUB_ENV
           tar -zcvf - ../../../packages/ | split -d -b 500m - openwrt.bin.packages.tar.gz. || true
           tar -zcvf - packages/ | split -d -b 500m - packages.tar.gz. || true
