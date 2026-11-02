@@ -16,11 +16,14 @@ git clone https://github.com/luanmuc/luci-app-airoha-npu.git package/luci-app-ai
 cat <<EOF >> .config
 
 #CONFIG_SDK=y
-CONFIG_PACKAGE_curl=y
-CONFIG_PACKAGE_nano=y
 CONFIG_LUCI_LANG_zh_Hans=y
 
-CONFIG_PACKAGE_nginx-full=y
+EOF
+
+for i in curl nano nginx-full
+do
+  echo "CONFIG_PACKAGE_$i=y" >> .config
+done
 
 CONFIG_PACKAGE_luci-proto-wireguard=y
 
