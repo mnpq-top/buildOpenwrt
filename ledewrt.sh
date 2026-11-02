@@ -13,6 +13,7 @@ EOF
 ./scripts/feeds install -a
 ################################
 mv .config .config.bak && make defconfig && mv .config config.def && mv .config.bak .config
+cat config.def
 
 cat <<EOF >> .config
 
