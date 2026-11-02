@@ -68,11 +68,18 @@ jobs:
           cd openwrt
           tree -L 6
       - name: Setup upterm session
-        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled }}
+        if: ${{ github.event.inputs.debug_enabled }}
         uses: owenthereal/action-upterm@v2
         with:
           wait-timeout-minutes: 5
           limit-access-to-actor: true # Restrict to the user who triggered the workflow
+      - uses: actions/upload-artifact@v4
+        if: ${{ github.event.inputs.debug_enabled }}
+        with:
+          name: artifact
+          path: /workdir/openwrt/.config
+      - if: ${{ github.event.inputs.debug_enabled }}
+        run: exit 1
       - name: Config
         run: |
           cd openwrt
