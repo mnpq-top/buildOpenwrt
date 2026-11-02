@@ -67,19 +67,27 @@ jobs:
           EOF
           if [ "${{ inputs.device_model }}" == 'all' ]
           then
-            cat <<EOF >.config
+            cat <<EOF >>.config
             CONFIG_TARGET_MULTI_PROFILE=y
             CONFIG_TARGET_ALL_PROFILES=y
             CONFIG_TARGET_PER_DEVICE_ROOTFS=y
             EOF
           else
-            cat <<EOF >.config
+            cat <<EOF >>.config
             CONFIG_TARGET_${{ inputs.cpu_model }}_DEVICE_${{ inputs.device_model }}=y
             EOF
           fi
           cat .config
           make defconfig
-          makeconf
+          cat .config
+      - name: add & del packages
+        run: |
+          cd openwrt && source ../lede.sh
+          delpkg
+          make defconfig
+          addpkg
+          make defconfig
+          cat .config
 
       - name: Setup upterm session
         if: ${{ inputs.debug_enabled == true }}
@@ -94,11 +102,6 @@ jobs:
           path: ${{ github.workspace }}/debug
       - if: ${{ inputs.debug_enabled == true }}
         run: exit 1
-      - name: Config
-        run: |
-          cd openwrt
-          make defconfig
-          cat .config
 
       - uses: klever1988/cachewrtbuild@main
         with:
