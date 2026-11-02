@@ -73,7 +73,6 @@ jobs:
         with:
           wait-timeout-minutes: 5
           limit-access-to-actor: true # Restrict to the user who triggered the workflow
-          limit-access-to-users: mnpq-top # Specific authorized users only
       - name: Config
         run: |
           cd openwrt
