@@ -61,7 +61,9 @@ CONFIG_PACKAGE_airoha-pond=y
 CONFIG_PACKAGE_airoha-ponctl=y
 CONFIG_PACKAGE_luci-app-pon=y
 EOF
-sed -i 's/CONFIG_PACKAGE_airoha-pon-debug=y//' .config
-sed -i 's/CONFIG_PACKAGE_luci-theme-argon=y//' .config
+for i in luci-app-ddns luci-app-vlmcsd luci-app-ssr-plus luci-theme-argon airoha-pon-debug
+do
+  sed -i "s/$i=y/$i=n/g" .config
+done
 }
 ################################
