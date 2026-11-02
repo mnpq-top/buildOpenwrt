@@ -61,21 +61,16 @@ jobs:
           cd openwrt && source ../lede.sh
           cpu_brand=${{ inputs.cpu_model }}
           cpu_brand=${cpu_brand%_*}
-          cat <<EOF >.config
-          CONFIG_TARGET_${cpu_brand}=y
-          CONFIG_TARGET_${{ inputs.cpu_model }}=y
+          echo CONFIG_TARGET_${cpu_brand}=y >.config
+          echo CONFIG_TARGET_${{ inputs.cpu_model }}=y >>.config
           EOF
-          if [ "${{ inputs.device_model }}" == 'all' ]
+          if [ "${{ inputs.device_model }}" == "all" ]
           then
-            cat <<EOF >>.config
-            CONFIG_TARGET_MULTI_PROFILE=y
-            CONFIG_TARGET_ALL_PROFILES=y
-            CONFIG_TARGET_PER_DEVICE_ROOTFS=y
-            EOF
+            echo CONFIG_TARGET_MULTI_PROFILE=y >>.config
+            echo CONFIG_TARGET_ALL_PROFILES=y >>.config
+            echo CONFIG_TARGET_PER_DEVICE_ROOTFS=y >>.config
           else
-            cat <<EOF >>.config
-            CONFIG_TARGET_${{ inputs.cpu_model }}_DEVICE_${{ inputs.device_model }}=y
-            EOF
+            echo CONFIG_TARGET_${{ inputs.cpu_model }}_DEVICE_${{ inputs.device_model }}=y >>.config
           fi
           cat .config
           make defconfig
