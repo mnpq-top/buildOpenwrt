@@ -84,13 +84,13 @@ jobs:
           cat .config
 
       - name: Setup upterm session
-        if: ${{ inputs.debug_enabled == true }}
+        if: failure() || inputs.debug_enabled == true
         uses: owenthereal/action-upterm@v2
         with:
           wait-timeout-minutes: 5
           limit-access-to-actor: true # Restrict to the user who triggered the workflow
       - uses: actions/upload-artifact@v4
-        if: ${{ inputs.debug_enabled == true}}
+        if: failure() || inputs.debug_enabled == true
         with:
           name: artifact
           path: ${{ github.workspace }}/debug
