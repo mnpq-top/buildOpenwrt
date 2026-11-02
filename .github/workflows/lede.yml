@@ -66,8 +66,19 @@ jobs:
           cat <<EOF >.config
           CONFIG_TARGET_${{ inputs.cpu_brand }}=y
           CONFIG_TARGET_${{ inputs.cpu_model }}=y
-          CONFIG_TARGET_${{ inputs.cpu_model }}_DEVICE_${{ inputs.device_model }}=y
           EOF
+          if ${{ inputs.device_model }} == 'all'
+          then
+            cat <<EOF >.config
+            CONFIG_TARGET_MULTI_PROFILE=y
+            CONFIG_TARGET_ALL_PROFILES=y
+            CONFIG_TARGET_PER_DEVICE_ROOTFS=y
+            EOF
+          else
+            cat <<EOF >.config
+            CONFIG_TARGET_${{ inputs.cpu_model }}_DEVICE_${{ inputs.device_model }}=y
+            EOF
+          fi
           makeconf
 
       - name: Setup upterm session
