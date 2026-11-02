@@ -61,7 +61,7 @@ CONFIG_PACKAGE_airoha-pond=y
 CONFIG_PACKAGE_airoha-ponctl=y
 CONFIG_PACKAGE_luci-app-pon=y
 EOF
-for i in luci-app-ddns luci-app-vlmcsd luci-app-ssr-plus luci-theme-argon airoha-pon-debug
+for i in luci-app-ddns luci-app-vlmcsd luci-app-ssr-plus luci-theme-argon luci-app-filetransfer luci-app-upnp luci-app-nlbwmon airoha-pon-debug
 do
   sed -i "s/CONFIG_PACKAGE_$i=y/CONFIG_PACKAGE_$i=n/g" .config
 done
