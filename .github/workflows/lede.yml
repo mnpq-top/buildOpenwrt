@@ -3,7 +3,7 @@ name: Build lede
 on:
   workflow_dispatch:
     inputs:
-      debug_enabled:
+      debug:
         type: boolean
         description: 'ssh debug'
         required: false
@@ -84,17 +84,17 @@ jobs:
           cat .config
 
       - name: Setup upterm session
-        if: failure() || inputs.debug_enabled == true
+        if: failure() || inputs.debug
         uses: owenthereal/action-upterm@v2
         with:
           wait-timeout-minutes: 5
           limit-access-to-actor: true # Restrict to the user who triggered the workflow
       - uses: actions/upload-artifact@v4
-        if: failure() || inputs.debug_enabled == true
+        if: failure() || inputs.debug
         with:
           name: artifact
           path: ${{ github.workspace }}/debug
-      - if: ${{ inputs.debug_enabled == true }}
+      - if: inputs.debug
         run: exit 1
 
       - uses: klever1988/cachewrtbuild@main
