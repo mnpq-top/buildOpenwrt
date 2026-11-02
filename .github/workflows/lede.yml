@@ -63,7 +63,6 @@ jobs:
           cpu_brand=${cpu_brand%_*}
           echo CONFIG_TARGET_${cpu_brand}=y >.config
           echo CONFIG_TARGET_${{ inputs.cpu_model }}=y >>.config
-          EOF
           if [ "${{ inputs.device_model }}" == "all" ]
           then
             echo CONFIG_TARGET_MULTI_PROFILE=y >>.config
