@@ -51,8 +51,7 @@ jobs:
         run: |
           git clone ${{ github.event.inputs.repo_url }} -b ${{ github.event.inputs.repo_branch }} openwrt
           ownerrepo=${{ github.event.inputs.repo_url }}
-          ownerrepo=${ownerrepo#*//}
-          echo "ownerrepo=${ownerrepo///-}" >> $GITHUB_ENV
+          echo "ownerrepo=${ownerrepo#*//}" >> $GITHUB_ENV
           cat <<EOF >openwrt/release.body
           ${ownerrepo}-${{ github.event.inputs.repo_branch }}
           EOF
