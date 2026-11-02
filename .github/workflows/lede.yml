@@ -111,6 +111,7 @@ jobs:
           tar -zcvf - ../../../packages/ | split -d -b 500m - openwrt.bin.packages.tar.gz. || true
           tar -zcvf - packages/ | split -d -b 500m - packages.tar.gz. || true
           rm -rf packages
+          cp $GITHUB_WORKSPACE/openwrt/.config $GITHUB_WORKSPACE/openwrt/Release/use.config
 
       - name: Create Release and Upload Assets
         uses: softprops/action-gh-release@v3
