@@ -89,9 +89,12 @@ jobs:
           cat .config
 
       - uses: klever1988/cachewrtbuild@main
+        env:
+          ownrep: ${{ github.event.inputs.repo_url }}
         with:
           ccache: true
           mixkey: ${{ github.event.inputs.cpu_model }}
+          prefix: ${ownrep##*/}
 
       - name: Download
         run: |
