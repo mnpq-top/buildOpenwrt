@@ -18,15 +18,15 @@ on:
         default: 'master'
       cpu_brand:
         required: true
-        description: 'cpu品牌 CONFIG_TARGET_airoha=y'
+        description: 'cpu品牌'
         default: 'airoha'
       cpu_model:
         required: true
-        description: 'cpu型号CONFIG_TARGET_airoha_an7581=y'
+        description: 'cpu型号'
         default: 'airoha_an7581'
       device_model:
         required: true
-        description: '设备型号CONFIG_TARGET_airoha_an7581_DEVICE_fiberhome_hg5382a'
+        description: '设备型号'
         default: 'fiberhome_hg5382a'
 jobs:
   build:
