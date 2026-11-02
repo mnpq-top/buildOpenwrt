@@ -38,6 +38,7 @@ CONFIG_PACKAGE_kmod-sched-core=y
 CONFIG_PACKAGE_kmod-sched-bpf=y
 CONFIG_PACKAGE_kmod-veth=y
 CONFIG_PACKAGE_kmod-nft-queue=y
+CONFIG_PACKAGE_vmlinux-btf=y
 EOF
 
 cat <<EOF >> .config
