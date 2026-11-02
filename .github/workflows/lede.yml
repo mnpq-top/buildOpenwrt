@@ -50,9 +50,11 @@ jobs:
       - name: Git
         run: |
           git clone ${{ github.event.inputs.repo_url }} -b ${{ github.event.inputs.repo_branch }} openwrt
+          ownerrepo=${{ github.event.inputs.repo_url }}
+          ownerrepo=${ownerrepo#*//}
+          echo "ownerrepo=${ownerrepo///-}" >> $GITHUB_ENV
           cat <<EOF >openwrt/release.body
-          ${{ github.event.inputs.repo_url }}
-          ${{ github.event.inputs.repo_branch }}
+          ${ownerrepo}-${{ github.event.inputs.repo_branch }}
           EOF
           cd openwrt && git log -n 1 --oneline >> release.body
       - name: Add feeds & packages
@@ -89,12 +91,10 @@ jobs:
           cat .config
 
       - uses: klever1988/cachewrtbuild@main
-        env:
-          ownrep: ${{ github.event.inputs.repo_url }}
         with:
           ccache: true
-          mixkey: ${{ github.event.inputs.cpu_model }}
-          prefix: ${ownrep##*/}
+          mixkey: ${{ env.ownerrepo }}-${{ github.event.inputs.cpu_model }}
+          prefix: openwrt
 
       - name: Download
         run: |
