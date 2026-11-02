@@ -2,7 +2,7 @@
 cat <<EOF >>feeds.conf.default
 
 src-git rtp2httpd https://github.com/stackia/rtp2httpd.git;main
-src-git nikki https://github.com/nikkinikki-org/OpenWrt-nikki.git;main
+#src-git nikki https://github.com/nikkinikki-org/OpenWrt-nikki.git;main
 
 EOF
 
@@ -12,8 +12,6 @@ EOF
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 ################################
-mv .config .config.bak && make defconfig && mv .config config.def && mv .config.bak .config
-cat config.def
 
 cat <<EOF >> .config
 
