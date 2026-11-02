@@ -40,9 +40,7 @@ jobs:
 
       - name: Git
         run: |
-          sudo mkdir -p /workdir && sudo chown $USER:$USER /workdir
           git clone ${{ github.event.inputs.repo_url }} -b ${{ github.event.inputs.repo_branch }} openwrt
-          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
           cat <<EOF >openwrt/release.body
           ${{ github.event.inputs.repo_url }}
           ${{ github.event.inputs.repo_branch }}
@@ -88,9 +86,9 @@ jobs:
           
       - name: tar
         run: |
-          tree openwrt/bin/ #>> openwrt/release.body
-          cd openwrt/bin/targets/*/*
-          echo "FIRMWAREDIR=$PWD" >> $GITHUB_ENV
+          cd openwrt/bin && tree -L 5
+          cd targets/*/*
+          ln -s $PWD $GITHUB_WORKSPACE/openwrt/Release
           tar -zcvf - ../../../packages/ | split -d -b 500m - openwrt.bin.packages.tar.gz. || true
           tar -zcvf - packages/ | split -d -b 500m - packages.tar.gz. || true
           rm -rf packages
@@ -99,7 +97,6 @@ jobs:
         uses: softprops/action-gh-release@v3
         with:
           name: "${{ steps.date.outputs.date }}-${{ github.run_number }}"
-          tag_name: "build-${{ steps.date.outputs.date }}-${{ github.run_number }}"
+          tag_name: "${{ steps.date.outputs.date }}-${{ github.run_number }}"
           body_path: "openwrt/release.body"
-          files:
-            ${{ env.FIRMWAREDIR }}/*
+          files: $GITHUB_WORKSPACE/openwrt/Release
