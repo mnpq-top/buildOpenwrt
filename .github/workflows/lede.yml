@@ -46,35 +46,26 @@ jobs:
             rsync swig zip unzip zlib1g-dev file wget curl ccache tree dwarves
           sudo apt-get clean
           sudo rm -rf /var/lib/apt/lists/*
-          
-      - name: Date
-        id: date
-        run: echo "date=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_OUTPUT
 
       - name: Git
         run: |
-          sudo mkdir -p /workdir && sudo chown $USER:$USER /workdir
           git clone ${{ github.event.inputs.repo_url }} -b ${{ github.event.inputs.repo_branch }} openwrt
-          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
           cat <<EOF >openwrt/release.body
           ${{ github.event.inputs.repo_url }}
           ${{ github.event.inputs.repo_branch }}
-          ${{ github.event.inputs.config_file }}
           EOF
-          cd openwrt
-          git log -n 1 --oneline >> release.body || true
 
       - name: Feeds
         run: |
-          cp ${{ github.event.inputs.config_file }} openwrt/.config
+          cat <<EOF >openwrt/.config
+          CONFIG_TARGET_${{ github.event.inputs.cpu_brand }}=y
+          CONFIG_TARGET_${{ github.event.inputs.cpu_model }}=y
+          CONFIG_TARGET_${{ github.event.inputs.cpu_model }}_DEVICE_${{ github.event.inputs.device_model }}=y
+          EOF
           chmod +x ledewrt.sh
           cd openwrt
           ../ledewrt.sh
 
-      - name: Tree
-        run: |
-          cd openwrt
-          tree -L 6
       - name: Setup upterm session
         if: ${{ github.event.inputs.debug_enabled }}
         uses: owenthereal/action-upterm@v2
@@ -93,13 +84,12 @@ jobs:
           cd openwrt
           make defconfig
           cat .config
-          echo "$(grep CONFIG_TARGET_ARCH_PACKAGES= .config)" >> $GITHUB_ENV
 
       - uses: klever1988/cachewrtbuild@main
         with:
           ccache: true
-          mixkey: ${{ env.CONFIG_TARGET_ARCH_PACKAGES }}
-          prefix: 'openwrt'
+          mixkey: ${{ github.event.inputs.cpu_model }}
+          prefix: 'lede'
 
       - name: Download
         run: |
