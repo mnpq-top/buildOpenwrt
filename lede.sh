@@ -17,8 +17,15 @@ EOF
 # ./scripts/feeds install -a
 ################################
 
-makeconf() {
-make defconfig
+delpkg() {
+for i in luci-app-ddns luci-app-vlmcsd luci-app-ssr-plus luci-theme-argon luci-app-filetransfer luci-app-upnp luci-app-nlbwmon luci-app-vsftpd airoha-pon-debug
+do
+  sed -i "s/CONFIG_PACKAGE_$i=y/CONFIG_PACKAGE_$i=n/g" .config
+done
+}
+
+addpkg() {
+
 cat <<EOF >> .config
 
 #CONFIG_SDK=y
@@ -59,9 +66,6 @@ do
   echo "CONFIG_PACKAGE_$i=y" >> .config
 done
 
-for i in luci-app-ddns luci-app-vlmcsd luci-app-ssr-plus luci-theme-argon luci-app-filetransfer luci-app-upnp luci-app-nlbwmon airoha-pon-debug
-do
-  sed -i "s/CONFIG_PACKAGE_$i=y/CONFIG_PACKAGE_$i=n/g" .config
-done
+
 }
 ################################
