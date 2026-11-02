@@ -16,10 +16,18 @@ on:
         required: true
         description: '源代码仓库分支'
         default: 'master'
-      config_file:
+      cpu_brand:
         required: true
-        description: '.config file'
-        default: 'lede.an7581.config'
+        description: 'cpu品牌'
+        default: ''
+      cpu_model:
+        required: true
+        description: 'cpu型号'
+        default: ''
+      device_model:
+        required: true
+        description: 'device_model'
+        default: ''
 jobs:
   build:
     runs-on: ubuntu-24.04
