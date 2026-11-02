@@ -54,13 +54,11 @@ EOF
 sed -i 's/+mihomo//' package/feeds/packages/nikki/Makefile
 sed -i 's/+yq//' package/feeds/packages/nikki/Makefile
 
-cat <<EOF >> .config
-CONFIG_PACKAGE_kmod-airoha-xpon=y
-CONFIG_PACKAGE_kmod-airoha-pon-frontend=y
-CONFIG_PACKAGE_airoha-pond=y
-CONFIG_PACKAGE_airoha-ponctl=y
-CONFIG_PACKAGE_luci-app-pon=y
-EOF
+for i in kmod-airoha-xpon kmod-airoha-pon-frontend airoha-pond airoha-ponctl luci-app-pon
+do
+  echo "CONFIG_PACKAGE_$i=y" >> .config
+done
+
 for i in luci-app-ddns luci-app-vlmcsd luci-app-ssr-plus luci-theme-argon luci-app-filetransfer luci-app-upnp luci-app-nlbwmon airoha-pon-debug
 do
   sed -i "s/CONFIG_PACKAGE_$i=y/CONFIG_PACKAGE_$i=n/g" .config
