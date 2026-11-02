@@ -62,9 +62,9 @@ jobs:
           CONFIG_TARGET_${{ github.event.inputs.cpu_model }}=y
           CONFIG_TARGET_${{ github.event.inputs.cpu_model }}_DEVICE_${{ github.event.inputs.device_model }}=y
           EOF
-          chmod +x ledewrt.sh
+          chmod +x lede.sh
           cd openwrt
-          ../ledewrt.sh
+          ../lede.sh
 
       - name: Setup upterm session
         if: ${{ github.event.inputs.debug_enabled }}
