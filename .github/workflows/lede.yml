@@ -62,7 +62,7 @@ jobs:
       - name: Make .config
         run: |
           cd openwrt && source ../lede.sh
-          cat <<EOF >openwrt/.config
+          cat <<EOF >.config
           CONFIG_TARGET_${{ github.event.inputs.cpu_brand }}=y
           CONFIG_TARGET_${{ github.event.inputs.cpu_model }}=y
           CONFIG_TARGET_${{ github.event.inputs.cpu_model }}_DEVICE_${{ github.event.inputs.device_model }}=y
