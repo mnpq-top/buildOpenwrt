@@ -54,6 +54,7 @@ jobs:
           ${{ github.event.inputs.repo_url }}
           ${{ github.event.inputs.repo_branch }}
           EOF
+          cd openwrt && git log -n 1 --oneline >> release.body
       - name: Add feeds & packages
         run: cd openwrt && source ../lede.sh && addfeeds
       - name: Feeds update & install
