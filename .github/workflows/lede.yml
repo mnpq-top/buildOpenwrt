@@ -67,7 +67,11 @@ jobs:
         run: |
           cd openwrt
           tree -L 6
-
+      - name: Setup upterm session
+        uses: owenthereal/action-upterm@v2
+        with:
+          limit-access-to-actor: true # Restrict to the user who triggered the workflow
+          limit-access-to-users: mnpq-top # Specific authorized users only
       - name: Config
         run: |
           cd openwrt
