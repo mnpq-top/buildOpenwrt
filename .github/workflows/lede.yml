@@ -89,7 +89,6 @@ jobs:
         with:
           ccache: true
           mixkey: ${{ github.event.inputs.cpu_model }}
-          prefix: 'lede'
 
       - name: Download
         run: |
