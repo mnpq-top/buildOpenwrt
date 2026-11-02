@@ -77,7 +77,7 @@ jobs:
         if: ${{ github.event.inputs.debug_enabled }}
         with:
           name: artifact
-          path: /workdir/openwrt/.config
+          path: $GITHUB_WORKSPACE/debug
       - if: ${{ github.event.inputs.debug_enabled }}
         run: exit 1
       - name: Config
