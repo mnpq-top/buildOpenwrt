@@ -68,8 +68,10 @@ jobs:
           cd openwrt
           tree -L 6
       - name: Setup upterm session
+        if: ${{ github.event.inputs.debug_enabled }}
         uses: owenthereal/action-upterm@v2
         with:
+          wait-timeout-minutes: 5
           limit-access-to-actor: true # Restrict to the user who triggered the workflow
           limit-access-to-users: mnpq-top # Specific authorized users only
       - name: Config
