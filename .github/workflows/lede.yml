@@ -67,7 +67,7 @@ jobs:
           CONFIG_TARGET_${{ inputs.cpu_brand }}=y
           CONFIG_TARGET_${{ inputs.cpu_model }}=y
           EOF
-          if ${{ inputs.device_model }} == 'all'
+          if [ "${{ inputs.device_model }}" == 'all' ]
           then
             cat <<EOF >.config
             CONFIG_TARGET_MULTI_PROFILE=y
@@ -79,6 +79,7 @@ jobs:
             CONFIG_TARGET_${{ inputs.cpu_model }}_DEVICE_${{ inputs.device_model }}=y
             EOF
           fi
+          make defconfig
           makeconf
 
       - name: Setup upterm session
