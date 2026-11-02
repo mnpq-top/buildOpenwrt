@@ -112,6 +112,4 @@ jobs:
           name: "${{ steps.date.outputs.date }}-${{ github.run_number }}"
           tag_name: "build-${{ steps.date.outputs.date }}-${{ github.run_number }}"
           body_path: "openwrt/release.body"
-          files: |
-            /workdir/openwrt/.config
-            ${{ env.FIRMWAREDIR }}/*
+          files: ${{ env.FIRMWAREDIR }}/*
