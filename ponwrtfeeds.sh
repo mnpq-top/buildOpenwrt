@@ -22,8 +22,8 @@ CONFIG_PACKAGE_luci-app-airoha-npu=y
 EOF
 for i in i2c-tools libi2c
 do
-  sed -i "s/CONFIG_MODULE_DEFAULT_$i=/#CONFIG_MODULE_DEFAULT_$i is not set/g" .config
-  sed -i "s/CONFIG_PACKAGE_$i=/#CONFIG_PACKAGE_$i is not set/g" .config
+  sed -i "s/CONFIG_MODULE_DEFAULT_$i=/# CONFIG_MODULE_DEFAULT_$i is not set/g" .config
+  sed -i "s/CONFIG_PACKAGE_$i=/# CONFIG_PACKAGE_$i is not set/g" .config
 done
 for i in tc-full kmod-sched-core kmod-sched-act-vlan kmod-sched-flower
 do
