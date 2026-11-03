@@ -82,6 +82,7 @@ jobs:
           addpkg
           make defconfig
           cat .config
+      - run: grep -v '^#' openwrt/.config
 
       - name: Setup upterm session
         if: failure() || inputs.debug
