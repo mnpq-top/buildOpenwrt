@@ -16,12 +16,12 @@ EOF
 cat <<EOF >> .config
 #CONFIG_SDK=y
 CONFIG_LUCI_LANG_zh_Hans=y
-CONFIG_PACKAGE_luci-proto-wireguard=y
-CONFIG_PACKAGE_luci-app-https-dns-proxy=y
+
 CONFIG_PACKAGE_luci-app-airoha-npu=y
+
 EOF
 
-for i in curl nano nginx-full
+for i in curl nano nginx-full ebtables-nft luci-proto-wireguard luci-app-https-dns-proxy
 do
   echo "CONFIG_PACKAGE_$i=y" >> .config
 done
@@ -29,15 +29,6 @@ done
 echo 'CONFIG_PACKAGE_luci-app-rtp2httpd=y' >> .config
 sed -i '/PKG_VERSION:=/c\PKG_VERSION:=3.17.2' package/feeds/packages/rtp2httpd/Makefile
 sed -i '/PKG_HASH:=/c\PKG_HASH:=ce866091321a0d69dff7e8f7dda5d68be94e901659ed7d2ff4896029c8200ee6' package/feeds/packages/rtp2httpd/Makefile
-
-cat <<EOF >> .configg
-#CONFIG_PACKAGE_luci-app-honk=y
-CONFIG_PACKAGE_kmod-sched-core=y
-CONFIG_PACKAGE_kmod-sched-bpf=y
-CONFIG_PACKAGE_kmod-veth=y
-CONFIG_PACKAGE_kmod-nft-queue=y
-CONFIG_PACKAGE_vmlinux-btf=y
-EOF
 
 cat <<EOF >> .config
 CONFIG_PACKAGE_luci-app-nikki=y
