@@ -1,4 +1,4 @@
-name: Build lede
+name: Build mt798x
 
 on:
   workflow_dispatch:
