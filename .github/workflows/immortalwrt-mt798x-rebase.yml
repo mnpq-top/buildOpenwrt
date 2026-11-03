@@ -19,11 +19,11 @@ on:
       cpu_model:
         required: true
         description: 'cpu品类_型号'
-        default: 'airoha_an7581'
+        default: 'mediatek_filogic'
       device_model:
         required: true
         description: '设备型号(填all则全型号(容易失败))'
-        default: 'fiberhome_hg5382a'
+        default: 'cmcc_rax3000m'
 jobs:
   build:
     runs-on: ubuntu-24.04
@@ -53,12 +53,12 @@ jobs:
           EOF
           cd openwrt && git log -n 1 --oneline >> release.body
       - name: Add feeds & packages
-        run: cd openwrt && source ../lede.sh && addfeeds
+        run: cd openwrt && source ../mt798x.sh && addfeeds
       - name: Feeds update & install
         run: cd openwrt && ./scripts/feeds update -a && ./scripts/feeds install -a
       - name: Make .config
         run: |
-          cd openwrt && source ../lede.sh
+          cd openwrt && source ../mt798x.sh
           cpu_brand=${{ inputs.cpu_model }}
           cpu_brand=${cpu_brand%_*}
           echo CONFIG_TARGET_${cpu_brand}=y >.config
@@ -76,7 +76,7 @@ jobs:
           cat .config
       - name: add & del packages
         run: |
-          cd openwrt && source ../lede.sh
+          cd openwrt && source ../mt798x.sh
           delpkg
           make defconfig
           addpkg
