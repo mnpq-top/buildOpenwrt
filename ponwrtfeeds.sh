@@ -20,17 +20,24 @@ CONFIG_LUCI_LANG_zh_Hans=y
 CONFIG_PACKAGE_luci-app-airoha-npu=y
 
 EOF
+
 for i in i2c-tools libi2c
 do
   sed -i "s/CONFIG_MODULE_DEFAULT_$i=/# CONFIG_MODULE_DEFAULT_$i is not set/g" .config
   sed -i "s/CONFIG_PACKAGE_$i=/# CONFIG_PACKAGE_$i is not set/g" .config
 done
+for i in luci uhttpd luci-app-uhttpd
+do
+  sed -i '/CONFIG_PACKAGE_$i=/d' .config
+done
+
+
 for i in tc-full kmod-sched-core kmod-sched-act-vlan kmod-sched-flower
 do
   echo "CONFIG_PACKAGE_$i=y" >> .config
 done
 
-for i in curl nano nginx-full luci-proto-wireguard luci-app-https-dns-proxy
+for i in curl nano luci-nginx luci-base luci-mod-admin-full luci-proto-wireguard luci-app-https-dns-proxy
 do
   echo "CONFIG_PACKAGE_$i=y" >> .config
 done
