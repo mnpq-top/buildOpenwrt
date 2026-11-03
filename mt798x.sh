@@ -35,13 +35,17 @@ CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_nano=y
 CONFIG_LUCI_LANG_zh_Hans=y
 
-CONFIG_PACKAGE_nginx=y
 
 CONFIG_PACKAGE_luci-proto-wireguard=y
 
 CONFIG_PACKAGE_luci-app-https-dns-proxy=y
 
-CONFIG_PACKAGE_luci-app-airoha-npu=y
+CONFIG_PACKAGE_docker=y
+CONFIG_PACKAGE_docker-compose=y
+CONFIG_PACKAGE_dockerd=y
+
+CONFIG_PACKAGE_luci-app-eqos-mtk=y
+CONFIG_PACKAGE_luci-i18n-eqos-mtk-zh-cn=y
 
 CONFIG_PACKAGE_luci-app-rtp2httpd=y
 
