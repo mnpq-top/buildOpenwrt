@@ -4,7 +4,7 @@
 addfeeds() {
 cat <<EOF >>feeds.conf.default
 
-src-git rtp2httpd https://github.com/stackia/rtp2httpd.git;main
+#src-git rtp2httpd https://github.com/stackia/rtp2httpd.git;main
 src-git nikki https://github.com/nikkinikki-org/OpenWrt-nikki.git;main
 
 EOF
@@ -50,6 +50,9 @@ CONFIG_PACKAGE_luci-i18n-eqos-mtk-zh-cn=y
 CONFIG_PACKAGE_luci-app-rtp2httpd=y
 
 EOF
+
+sed -i '/PKG_VERSION:=/c\PKG_VERSION:=3.17.2' package/feeds/packages/rtp2httpd/Makefile
+sed -i '/PKG_HASH:=/c\PKG_HASH:=ce866091321a0d69dff7e8f7dda5d68be94e901659ed7d2ff4896029c8200ee6' package/feeds/packages/rtp2httpd/Makefile
 
 cat <<EOF >> .configg
 #CONFIG_PACKAGE_luci-app-honk=y
