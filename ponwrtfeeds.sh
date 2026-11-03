@@ -20,8 +20,12 @@ CONFIG_LUCI_LANG_zh_Hans=y
 CONFIG_PACKAGE_luci-app-airoha-npu=y
 
 EOF
+for i in tc-full kmod-sched-core kmod-sched-act-vlan kmod-sched-flower
+do
+  echo "CONFIG_PACKAGE_$i=y" >> .config
+done
 
-for i in curl nano nginx-full tc-full luci-proto-wireguard luci-app-https-dns-proxy
+for i in curl nano nginx-full luci-proto-wireguard luci-app-https-dns-proxy
 do
   echo "CONFIG_PACKAGE_$i=y" >> .config
 done
@@ -33,6 +37,7 @@ sed -i '/PKG_HASH:=/c\PKG_HASH:=ce866091321a0d69dff7e8f7dda5d68be94e901659ed7d2f
 cat <<EOF >> .config
 CONFIG_PACKAGE_luci-app-nikki=y
 CONFIG_PACKAGE_kmod-dummy=y
+#CONFIG_PACKAGE_yq=y
 EOF
 sed -i 's/+mihomo//' feeds/nikki/nikki/Makefile
 sed -i 's/+yq//' feeds/nikki/nikki/Makefile
