@@ -24,6 +24,9 @@ on:
         required: true
         description: '设备型号(填all则全型号(容易失败))'
         default: 'cmcc_rax3000m'
+      base_config:
+        description: '.config file path'
+        default: 'openwrt/defconfig/mt7981-ax3000.config'
 jobs:
   build:
     runs-on: ubuntu-24.04
@@ -58,19 +61,11 @@ jobs:
         run: cd openwrt && ./scripts/feeds update -a && ./scripts/feeds install -a
       - name: Make .config
         run: |
+          cp ${{ inputs.base_config }} openwrt/.config
           cd openwrt && source ../mt798x.sh
-          cpu_brand=${{ inputs.cpu_model }}
-          cpu_brand=${cpu_brand%_*}
-          echo CONFIG_TARGET_${cpu_brand}=y >.config
-          echo CONFIG_TARGET_${{ inputs.cpu_model }}=y >>.config
-          if [ "${{ inputs.device_model }}" == "all" ]
-          then
-            echo CONFIG_TARGET_MULTI_PROFILE=y >>.config
-            echo CONFIG_TARGET_ALL_PROFILES=y >>.config
-            echo CONFIG_TARGET_PER_DEVICE_ROOTFS=y >>.config
-          else
-            echo CONFIG_TARGET_${{ inputs.cpu_model }}_DEVICE_${{ inputs.device_model }}=y >>.config
-          fi
+          sed -i '/CONFIG_TARGET_MULTI_PROFILE/d' .config
+          sed -i '/CONFIG_TARGET_DEVICE/d' .config
+          echo CONFIG_TARGET_${{ inputs.cpu_model }}_DEVICE_${{ inputs.device_model }}=y >>.config
           cat .config
           make defconfig
           cat .config
