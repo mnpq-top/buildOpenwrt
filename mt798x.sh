@@ -53,7 +53,7 @@ echo 'CONFIG_PACKAGE_luci-app-rtp2httpd=y' >> .config
 sed -i '/PKG_VERSION:=/c\PKG_VERSION:=3.17.2' package/feeds/packages/rtp2httpd/Makefile
 sed -i '/PKG_HASH:=/c\PKG_HASH:=ce866091321a0d69dff7e8f7dda5d68be94e901659ed7d2ff4896029c8200ee6' package/feeds/packages/rtp2httpd/Makefile
 
-cat <<EOF >> .configg
+cat <<EOF >> .config
 #CONFIG_PACKAGE_luci-app-honk=y
 CONFIG_PACKAGE_kmod-sched-core=y
 CONFIG_PACKAGE_kmod-sched-bpf=y
@@ -62,7 +62,7 @@ CONFIG_PACKAGE_kmod-nft-queue=y
 CONFIG_PACKAGE_vmlinux-btf=y
 EOF
 
-cat <<EOF >> .config
+cat <<EOF >> .configg
 CONFIG_PACKAGE_luci-app-nikki=y
 CONFIG_PACKAGE_kmod-dummy=y
 EOF
