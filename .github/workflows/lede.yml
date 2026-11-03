@@ -84,17 +84,8 @@ jobs:
           cat .config
       - run: grep -v '^#' openwrt/.config
 
-      - name: Setup upterm session
-        if: failure() || inputs.debug
-        uses: owenthereal/action-upterm@v2
-        with:
-          wait-timeout-minutes: 5
-          limit-access-to-actor: true # Restrict to the user who triggered the workflow
-      - uses: actions/upload-artifact@v4
-        if: failure() || inputs.debug
-        with:
-          name: artifact
-          path: ${{ github.workspace }}/debug
+       # Restrict to the user who triggered the workflow
+      
       - if: inputs.debug
         run: exit 1
 
@@ -131,3 +122,14 @@ jobs:
           tag_name: "${{ inputs.cpu_model }}-${{ inputs.device_model }}-${{ github.run_number }}"
           body_path: "openwrt/release.body"
           files: ${{ github.workspace }}/openwrt/Release/*
+      - name: Setup upterm session
+        if: failure() || inputs.debug
+        uses: owenthereal/action-upterm@v2
+        with:
+          wait-timeout-minutes: 5
+          limit-access-to-actor: tru
+      - uses: actions/upload-artifact@v4
+        if: failure() || inputs.debug
+        with:
+          name: artifact
+          path: ${{ github.workspace }}/debug
