@@ -22,8 +22,7 @@ for i in coremark luci-app-ddns ddns-scripts-services ddns-scripts_aliyun ddns-s
 do
   sed -i "s/CONFIG_MODULE_DEFAULT_$i=y/CONFIG_MODULE_DEFAULT_$i=n/g" .config
   sed -i "s/CONFIG_PACKAGE_$i=y/CONFIG_PACKAGE_$i=n/g" .config
-  rm -rf tmp/
-  #sed -i "s/$i //" include/target.mk
+  sed -i "s/$i //" include/target.mk
 done
 }
 
