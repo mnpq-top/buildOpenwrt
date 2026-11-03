@@ -22,7 +22,7 @@ on:
         default: 'airoha_an7581'
       device_model:
         required: true
-        description: '设备型号(填all则全型号)'
+        description: '设备型号(填all则全型号(容易失败))'
         default: 'fiberhome_hg5382a'
 jobs:
   build:
