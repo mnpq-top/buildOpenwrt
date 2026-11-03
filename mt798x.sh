@@ -46,7 +46,6 @@ CONFIG_PACKAGE_docker-compose=y
 CONFIG_PACKAGE_dockerd=y
 
 CONFIG_PACKAGE_luci-app-eqos-mtk=y
-CONFIG_PACKAGE_luci-i18n-eqos-mtk-zh-cn=y
 
 EOF
 
