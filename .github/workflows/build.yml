@@ -88,7 +88,7 @@ jobs:
         run: |
           cd openwrt/bin && tree -L 5
           cd targets/*/*
-          ln -s $PWD $GITHUB_WORKSPACE/openwrt/Release
+          ln -s $PWD ${{ github.workspace }}/openwrt/Release
           tar -zcvf - ../../../packages/ | split -d -b 500m - openwrt.bin.packages.tar.gz. || true
           tar -zcvf - packages/ | split -d -b 500m - packages.tar.gz. || true
           rm -rf packages
@@ -99,4 +99,4 @@ jobs:
           name: "${{ steps.date.outputs.date }}-${{ github.run_number }}"
           tag_name: "${{ steps.date.outputs.date }}-${{ github.run_number }}"
           body_path: "openwrt/release.body"
-          files: $GITHUB_WORKSPACE/openwrt/Release/*
+          files: ${{ github.workspace }}/openwrt/Release/*
