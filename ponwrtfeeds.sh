@@ -21,7 +21,7 @@ CONFIG_PACKAGE_luci-app-airoha-npu=y
 
 EOF
 
-for i in curl nano nginx-full ebtables-nft luci-proto-wireguard luci-app-https-dns-proxy
+for i in curl nano nginx-full tc-full luci-proto-wireguard luci-app-https-dns-proxy
 do
   echo "CONFIG_PACKAGE_$i=y" >> .config
 done
