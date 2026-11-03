@@ -38,6 +38,7 @@ CONFIG_LUCI_LANG_zh_Hans=y
 
 CONFIG_PACKAGE_luci-proto-wireguard=y
 
+CONFIG_PACKAGE_https-dns-proxy=y
 CONFIG_PACKAGE_luci-app-https-dns-proxy=y
 
 CONFIG_PACKAGE_docker=y
@@ -47,10 +48,9 @@ CONFIG_PACKAGE_dockerd=y
 CONFIG_PACKAGE_luci-app-eqos-mtk=y
 CONFIG_PACKAGE_luci-i18n-eqos-mtk-zh-cn=y
 
-CONFIG_PACKAGE_luci-app-rtp2httpd=y
-
 EOF
 
+echo 'CONFIG_PACKAGE_luci-app-rtp2httpd=y' >> .config
 sed -i '/PKG_VERSION:=/c\PKG_VERSION:=3.17.2' package/feeds/packages/rtp2httpd/Makefile
 sed -i '/PKG_HASH:=/c\PKG_HASH:=ce866091321a0d69dff7e8f7dda5d68be94e901659ed7d2ff4896029c8200ee6' package/feeds/packages/rtp2httpd/Makefile
 
