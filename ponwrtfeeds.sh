@@ -26,25 +26,21 @@ do
   sed -i "s/CONFIG_MODULE_DEFAULT_$i=/# CONFIG_MODULE_DEFAULT_$i is not set/g" .config
   sed -i "s/CONFIG_PACKAGE_$i=/# CONFIG_PACKAGE_$i is not set/g" .config
 done
-for i in luci uhttpd luci-app-uhttpd
-do
-  sed -i '/CONFIG_PACKAGE_$i=/d' .config
-done
 
-
-for i in tc-full kmod-sched-core kmod-sched-act-vlan kmod-sched-flower
-do
-  echo "CONFIG_PACKAGE_$i=y" >> .config
-done
-
-for i in curl nano luci-nginx luci-base luci-mod-admin-full luci-proto-wireguard luci-app-https-dns-proxy
+#for i in tc-full kmod-sched-core kmod-sched-act-vlan kmod-sched-flower
+#do
+#  echo "CONFIG_PACKAGE_$i=y" >> .config
+#done
+#for i in luci uhttpd luci-app-uhttpd
+#do
+#  sed -i '/CONFIG_PACKAGE_$i=/d' .config
+#done
+for i in curl nano nginx-full luci-proto-wireguard luci-app-https-dns-proxy
 do
   echo "CONFIG_PACKAGE_$i=y" >> .config
 done
 
 echo 'CONFIG_PACKAGE_luci-app-rtp2httpd=y' >> .config
-sed -i '/PKG_VERSION:=/c\PKG_VERSION:=3.17.2' package/feeds/packages/rtp2httpd/Makefile
-sed -i '/PKG_HASH:=/c\PKG_HASH:=ce866091321a0d69dff7e8f7dda5d68be94e901659ed7d2ff4896029c8200ee6' package/feeds/packages/rtp2httpd/Makefile
 
 cat <<EOF >> .config
 CONFIG_PACKAGE_luci-app-nikki=y
@@ -58,7 +54,7 @@ for i in kmod-airoha-xpon kmod-airoha-pon-frontend airoha-pond airoha-ponctl luc
 do
   echo "CONFIG_PACKAGE_$i=y" >> .config
 done
-sed -i 's/CONFIG_PACKAGE_airoha-pon-debug=y//' .config
+#sed -i 's/CONFIG_PACKAGE_airoha-pon-debug=y//' .config
 sed -i 's/CONFIG_PACKAGE_luci-theme-argon=y//' .config
 
 #
