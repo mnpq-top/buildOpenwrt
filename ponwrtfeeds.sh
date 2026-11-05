@@ -39,7 +39,7 @@ for i in luci-nginx luci-base luci-mod-admin-full
 do
   echo "CONFIG_PACKAGE_$i=y" >> .config
 done
-for i in curl nano nginx-full luci-proto-wireguard luci-app-https-dns-proxy
+for i in curl nano luci-proto-wireguard luci-app-https-dns-proxy
 do
   echo "CONFIG_PACKAGE_$i=y" >> .config
 done
