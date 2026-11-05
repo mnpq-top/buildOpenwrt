@@ -49,16 +49,16 @@ echo 'CONFIG_PACKAGE_luci-app-rtp2httpd=y' >> .config
 cat <<EOF >> .config
 CONFIG_PACKAGE_luci-app-nikki=y
 CONFIG_PACKAGE_kmod-dummy=y
-#CONFIG_PACKAGE_yq=y
+CONFIG_PACKAGE_yq=y
 EOF
 sed -i 's/+mihomo//' feeds/nikki/nikki/Makefile
 sed -i 's/+yq//' feeds/nikki/nikki/Makefile
 
-for i in kmod-airoha-xpon kmod-airoha-pon-frontend airoha-pond airoha-ponctl luci-app-pon
+for i in kmod-airoha-xpon kmod-airoha-pon-frontend airoha-pond airoha-ponctl airoha-pon-debug luci-app-pon
 do
   echo "CONFIG_PACKAGE_$i=y" >> .config
 done
-#sed -i 's/CONFIG_PACKAGE_airoha-pon-debug=y//' .config
+
 sed -i 's/CONFIG_PACKAGE_luci-theme-argon=y//' .config
 
 #
