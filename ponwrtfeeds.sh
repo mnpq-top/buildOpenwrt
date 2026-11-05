@@ -31,10 +31,14 @@ done
 #do
 #  echo "CONFIG_PACKAGE_$i=y" >> .config
 #done
-#for i in luci uhttpd luci-app-uhttpd
-#do
-#  sed -i '/CONFIG_PACKAGE_$i=/d' .config
-#done
+for i in luci uhttpd luci-app-uhttpd
+do
+  sed -i '/CONFIG_PACKAGE_$i=/d' .config
+done
+for i in luci-nginx luci-base luci-mod-admin-full
+do
+  echo "CONFIG_PACKAGE_$i=y" >> .config
+done
 for i in curl nano nginx-full luci-proto-wireguard luci-app-https-dns-proxy
 do
   echo "CONFIG_PACKAGE_$i=y" >> .config
