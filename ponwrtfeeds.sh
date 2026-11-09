@@ -49,7 +49,7 @@ echo 'CONFIG_PACKAGE_luci-app-rtp2httpd=y' >> .config
 cat <<EOF >> .config
 CONFIG_PACKAGE_luci-app-nikki=y
 CONFIG_PACKAGE_kmod-dummy=y
-CONFIG_PACKAGE_yq=y
+#CONFIG_PACKAGE_yq=y
 EOF
 sed -i 's/+mihomo//' feeds/nikki/nikki/Makefile
 sed -i 's/+yq//' feeds/nikki/nikki/Makefile
