@@ -18,7 +18,7 @@ EOF
 ################################
 
 delpkg() {
-for i in coremark luci-app-ddns ddns-scripts-services ddns-scripts_aliyun ddns-scripts_dnspod ddns-scripts luci-app-upnp luci-app-autoreboot luci-app-filetransfer luci-app-vsftpd vsftpd miniupnpd-nftables luci-app-ssr-plus luci-app-vlmcsd luci-app-accesscontrol luci-app-nlbwmon 3proxy luci-theme-argon airoha-pon-debug
+for i in ip-tiny coremark luci-app-ddns ddns-scripts-services ddns-scripts_aliyun ddns-scripts_dnspod ddns-scripts luci-app-upnp luci-app-autoreboot luci-app-filetransfer luci-app-vsftpd vsftpd miniupnpd-nftables luci-app-ssr-plus luci-app-vlmcsd luci-app-accesscontrol luci-app-nlbwmon 3proxy luci-theme-argon airoha-pon-debug
 do
   sed -i "s/CONFIG_MODULE_DEFAULT_$i=y/CONFIG_MODULE_DEFAULT_$i=n/g" .config
   sed -i "s/CONFIG_PACKAGE_$i=y/CONFIG_PACKAGE_$i=n/g" .config
@@ -76,6 +76,7 @@ EOF
 cat <<EOF >> .config
 CONFIG_PACKAGE_luci-app-nikki=y
 CONFIG_PACKAGE_kmod-dummy=y
+CONFIG_PACKAGE_ip-full=y
 EOF
 sed -i 's/+mihomo//' feeds/nikki/nikki/Makefile
 sed -i 's/+yq//' feeds/nikki/nikki/Makefile
