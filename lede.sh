@@ -20,7 +20,7 @@ EOF
 delpkg() {
 rm -rf feeds/helloworld
 
-for i in coremark luci-app-ddns ddns-scripts-services ddns-scripts_aliyun ddns-scripts_dnspod ddns-scripts luci-app-upnp luci-theme-design luci-app-autoreboot luci-app-filetransfer luci-app-vsftpd vsftpd miniupnpd-nftables luci-app-ssr-plus luci-app-vlmcsd luci-app-accesscontrol 3proxy xray-core microsocks iptables ip6tables kmod-ipt-nat6 kmod-ipt-raw iptables-mod-tproxy kmod-tun iptables-mod-extra luci-theme-argon airoha-pon-debug
+for i in coremark luci-app-ddns ddns-scripts-services ddns-scripts_aliyun ddns-scripts_dnspod ddns-scripts luci-app-upnp luci-theme-design luci-app-autoreboot luci-app-filetransfer luci-app-vsftpd vsftpd miniupnpd-nftables luci-app-ssr-plus luci-app-vlmcsd vlmcsd luci-app-accesscontrol 3proxy xray-core microsocks iptables ip6tables kmod-ipt-nat6 kmod-ipt-raw iptables-mod-tproxy kmod-tun iptables-mod-extra luci-theme-argon airoha-pon-debug
 do
   sed -i "/CONFIG_MODULE_DEFAULT_$i=/c\CONFIG_MODULE_DEFAULT_$i=n" .config
   sed -i "/CONFIG_PACKAGE_$i=/c\CONFIG_PACKAGE_$i=n" .config
