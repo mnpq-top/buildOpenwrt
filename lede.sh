@@ -18,7 +18,7 @@ EOF
 ################################
 
 delpkg() {
-rm -rf feeds/helloword
+rm -rf feeds/helloworld
 
 for i in coremark luci-app-ddns ddns-scripts-services ddns-scripts_aliyun ddns-scripts_dnspod ddns-scripts luci-app-upnp luci-theme-design luci-app-autoreboot luci-app-filetransfer luci-app-vsftpd vsftpd miniupnpd-nftables luci-app-ssr-plus luci-app-vlmcsd luci-app-accesscontrol 3proxy xray-core microsocks iptables ip6tables kmod-ipt-nat6 kmod-ipt-raw iptables-mod-tproxy kmod-tun iptables-mod-extra luci-theme-argon airoha-pon-debug
 do
