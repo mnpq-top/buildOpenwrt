@@ -8,7 +8,7 @@ src-git rtp2httpd https://github.com/stackia/rtp2httpd.git;main
 #src-git nikki https://github.com/nikkinikki-org/OpenWrt-nikki.git;main
 
 EOF
-
+sed -i '/helloworld/c\' feeds.conf.default
 #git clone https://github.com/luanmuc/luci-app-airoha-npu.git package/luci-app-airoha-npu
 }
 
@@ -18,7 +18,6 @@ EOF
 ################################
 
 delpkg() {
-rm -rf feeds/helloworld
 
 for i in coremark luci-app-ddns ddns-scripts-services ddns-scripts_aliyun ddns-scripts_dnspod ddns-scripts luci-app-upnp luci-theme-design luci-app-autoreboot luci-app-filetransfer luci-app-vsftpd vsftpd miniupnpd-nftables luci-app-ssr-plus luci-app-vlmcsd vlmcsd luci-app-accesscontrol 3proxy xray-core microsocks iptables ip6tables kmod-ipt-nat6 kmod-ipt-raw iptables-mod-tproxy kmod-tun iptables-mod-extra luci-theme-argon airoha-pon-debug
 do
