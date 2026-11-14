@@ -18,7 +18,7 @@ EOF
 ################################
 
 delpkg() {
-for i in coremark luci-app-ddns ddns-scripts-services ddns-scripts_aliyun ddns-scripts_dnspod ddns-scripts luci-app-upnp luci-theme-design luci-app-autoreboot luci-app-filetransfer luci-app-vsftpd vsftpd miniupnpd-nftables luci-app-ssr-plus luci-app-vlmcsd luci-app-accesscontrol 3proxy xray-core microsocks luci-theme-argon airoha-pon-debug
+for i in coremark luci-app-ddns ddns-scripts-services ddns-scripts_aliyun ddns-scripts_dnspod ddns-scripts luci-app-upnp luci-theme-design luci-app-autoreboot luci-app-filetransfer luci-app-vsftpd vsftpd miniupnpd-nftables luci-app-ssr-plus luci-app-vlmcsd luci-app-accesscontrol 3proxy xray-core microsocks iptables ip6tables kmod-ipt-nat6 kmod-ipt-raw iptables-mod-tproxy kmod-tun iptables-mod-extra luci-theme-argon airoha-pon-debug
 do
   sed -i "s/CONFIG_MODULE_DEFAULT_$i=/CONFIG_MODULE_DEFAULT_$i=n/g" .config
   sed -i "s/CONFIG_PACKAGE_$i=/CONFIG_PACKAGE_$i=n/g" .config
